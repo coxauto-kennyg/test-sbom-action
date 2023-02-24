@@ -1,0 +1,20 @@
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+
+jobs:
+  test-docker:
+    runs-on: ["ubuntu-latest"]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          image: 'python:3.9'
+          
+      - uses: anchore/sbom-action/publish-sbom@v0
+        with:
+          sbom-artifact-match: ".*\\.spdx\\.json$"
