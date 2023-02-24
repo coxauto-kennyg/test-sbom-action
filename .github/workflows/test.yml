@@ -13,7 +13,7 @@ jobs:
       - name: Generate SBOM
         uses: anchore/sbom-action@v0
         with:
-          image: 'python:3.9'
+          image: 'docker.io/library/python:3.9'
           
       - uses: anchore/sbom-action/publish-sbom@v0
         with:
